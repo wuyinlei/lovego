@@ -91,12 +91,12 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_register"
+                    android:id="@+id/btn_login"
                     android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.88"
-                    android:text="注册"/>
+                    android:text="登录"/>
 
                 <Button
                     android:layout_marginLeft="5dp"

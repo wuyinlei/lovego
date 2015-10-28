@@ -21,7 +21,7 @@ public class BuyFragment extends Fragment {
             mView = inflater.inflate(R.layout.fragment_buy,container,false);
         } else {
             ViewGroup parent = (ViewGroup) mView.getParent();
-            parent.removeView(mView);
+           // parent.removeView(mView);
         }
         return mView;
     }

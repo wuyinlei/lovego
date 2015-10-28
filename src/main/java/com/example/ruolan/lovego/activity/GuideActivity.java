@@ -1,19 +1,22 @@
-package com.example.ruolan.lovego;
+package com.example.ruolan.lovego.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.ruolan.lovego.R;
+
 import java.util.ArrayList;
 
-public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
+public class GuideActivity extends Activity implements View.OnClickListener {
 
     private ArrayList<View> mlist = new ArrayList<>();
     private ViewPager mPager;
@@ -77,7 +80,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-
             return view == object;
         }
     }

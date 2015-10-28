@@ -1,4 +1,4 @@
-package com.example.ruolan.lovego;
+package com.example.ruolan.lovego.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+
+import com.example.ruolan.lovego.R;
 
 public class SplashActivity extends Activity {
 
