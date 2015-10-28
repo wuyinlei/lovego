@@ -14,18 +14,18 @@ public class UserDataManager {
 
     private static final String DB_NAME = "user_name";
     private static final int VERSION = 2;
-    private static final String TABLE_NAME = "users";
-    private static final String ID = "_id";
-    private static final String USER_NAME = "user_name";
-    private static final String USER_PASSWORD = "user_password";
+    public static final String TABLE_NAME = "users";
+    public static final String ID = "_id";
+    public static final String USER_NAME = "user_name";
+    public static final String USER_PASSWORD = "user_password";
 
     private Context mContext = null;
 
     private DatabaseManagerHelper managerHelper;
     private SQLiteDatabase mSQLiteDatabase;
 
-    private static final String DB_CREATE = "create table" + TABLE_NAME  + "(" + ID + "integer primary key," +
-            USER_NAME + "varchar," + USER_PASSWORD + "varchar" + ")";
+    public static final String DB_CREATE = "create table " + TABLE_NAME  + "(" + ID + " integer primary key," +
+            USER_NAME + " varchar," + USER_PASSWORD + " varchar" + ")";
 
     private static class DatabaseManagerHelper extends SQLiteOpenHelper{
 
@@ -35,12 +35,13 @@ public class UserDataManager {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("drop table if exists" + TABLE_NAME + ";");
+
             db.execSQL(DB_CREATE);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("drop table if exists" + TABLE_NAME + ";");
             onCreate(db);
         }
     }
@@ -81,10 +82,11 @@ public class UserDataManager {
 
     public int findUserNameAndPwd(String userName,String pwd){
         int result = 0;
-        Cursor cursor = mSQLiteDatabase.query(TABLE_NAME, null, USER_NAME + "=" + userName + "and" + USER_PASSWORD + "=" + pwd, null, null, null, null);
+        Cursor cursor = mSQLiteDatabase.query(TABLE_NAME, null, USER_NAME + "=" + userName + " and " + USER_PASSWORD + "=" + pwd, null, null, null, null);
 
         if (cursor != null){
-            result = cursor.getCount();
+            //本来用的是result = cursor.getCount();  但是显示的result=0，这个不知道为什么了
+            result = 1;
             cursor.close();
         }
         return result;

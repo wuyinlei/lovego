@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ruolan.lovego.R;
@@ -16,6 +17,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private EditText userName,userPassword;
     private Button btn_login,btn_cancel,btn_register;
+    private TextView unlogin_text;
     private UserDataManager mUserDataManager;
 
     @Override
@@ -29,7 +31,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         btn_register = (Button) findViewById(R.id.btn_register);
         btn_login.setOnClickListener(this);
         btn_cancel.setOnClickListener(this);
-        btn_register.setOnClickListener(this);
+        unlogin_text = (TextView) findViewById(R.id.textView4);
+        unlogin_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+            }
+        });
+        // btn_register.setOnClickListener(this);
         if (mUserDataManager == null){
             mUserDataManager = new UserDataManager(this);
             mUserDataManager.openDatabase();
@@ -41,12 +50,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_login:
                 login();
+                finish();
                 break;
             case R.id.btn_cancel:
                 cancel();
-                break;
-            case R.id.btn_register:
-                startActivity(new Intent(this,RegisterActivity.class));
                 break;
         }
     }
@@ -62,8 +69,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             int result = mUserDataManager.findUserNameAndPwd(username,userpwd);
             if (result == 1){
                 Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("username",username);
+                setResult(2,intent);
+                finish();
             } else {
-                Toast.makeText(this,"登录成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"登录失败",Toast.LENGTH_SHORT).show();
             }
         }
 
